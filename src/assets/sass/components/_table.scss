@@ -1,0 +1,35 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  thead {
+    background-color: #f0efef;
+    th:nth-child(3) {
+      width: 600px;
+    }
+    tr {
+      height: 47px;
+    }
+  }
+  tbody {
+    tr {
+      height: 42px;
+      &:not(:last-child) {
+        border-bottom: 1px solid #efeeee;
+      }
+      td {
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+  th {
+    padding-left: 30px;
+  }
+
+  td {
+    padding-left: 30px;
+  }
+}

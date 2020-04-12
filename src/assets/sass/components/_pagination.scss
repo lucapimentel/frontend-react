@@ -1,0 +1,43 @@
+.pagination-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  border-top: 1px solid #efeeee;
+  padding: 0 10px;
+  .pagination-sumary {
+    width: 100%;
+    font-size: 13px;
+    font-weight: 100;
+  }
+  .pagination-list {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    img {
+      cursor: pointer;
+    }
+    &-container {
+      display: flex;
+      flex-flow: row wrap;
+      &-item {
+        color: #2b2b2b;
+        font-weight: 600;
+        font-size: 15px;
+        margin-right: 10px;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .active {
+    border: 1px solid #a3a3a3;
+    border-radius: 3px;
+    padding: 0px 3px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+}

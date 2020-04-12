@@ -1,15 +1,13 @@
-import React from 'react'
-import './App.scss'
-
+import React from "react";
+import { Route, HashRouter } from "react-router-dom";
+import Home from "./pages/Home";
+import "./assets/sass/main.scss";
 const App: React.FC = () => {
-	const logoMoovin =
-		'https://cdn.moovin.com.br/project/manager-panel/img/logo-moovin.svg'
+  return (
+    <HashRouter>
+      <Route exact path="/" component={Home} />
+    </HashRouter>
+  );
+};
 
-	return (
-		<div className='App'>
-			<img alt='Logo da Moovin' src={logoMoovin} />
-		</div>
-	)
-}
-
-export default App
+export default App;

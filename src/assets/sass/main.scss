@@ -1,0 +1,22 @@
+@import "components/header";
+@import "components/section";
+@import "components/pagination";
+@import "components/table";
+@import "pages/home";
+@import "App.scss";
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+body {
+  background-color: #f0efef;
+  font-family: "Open Sans";
+  font-size: 14px;
+  text-align: left;
+  margin: 0;
+}
+
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
