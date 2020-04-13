@@ -39,12 +39,11 @@ const Pagination: React.FC<IPaginationProps> = (props) => {
           }
           key={index}
           onClick={() => {
-            console.log(pageNumber)
-            const testeAction: AcceptedActions = {
+            const currentAction: AcceptedActions = {
               type: ACTION_GOTO_PAGE,
               payload: pageNumber,
             };
-            props.dispatch(testeAction);
+            props.dispatch(currentAction);
             props.gotoPageEvent();
           }}
         >
@@ -63,11 +62,11 @@ const Pagination: React.FC<IPaginationProps> = (props) => {
           src={backArrow}
           alt=""
           onClick={() => {
-            const testeAction: AcceptedActions = {
+            const currentAction: AcceptedActions = {
               type: ACTION_DECREASE_PAGECOUNT,
               payload: 0,
             };
-            props.dispatch(testeAction);
+            props.dispatch(currentAction);
             props.previousPageEvent();
           }}
         />
@@ -76,11 +75,11 @@ const Pagination: React.FC<IPaginationProps> = (props) => {
           src={nextArrow}
           alt=""
           onClick={() => {
-            const testeAction: AcceptedActions = {
+            const currentAction: AcceptedActions = {
               type: ACTION_INCREASE_PAGECOUNT,
               payload: 0,
             };
-            props.dispatch(testeAction);
+            props.dispatch(currentAction);
             props.nextPageEvent();
           }}
         />

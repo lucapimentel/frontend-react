@@ -27,8 +27,6 @@ const Table: React.FC = () => {
     pageCount: 0,
   });
 
-  const appStateContext = React.createContext(appState);
-
   const [state, dispatch] = useReducer(appReducer, appState);
 
   async function getPostsFromApi(page = 1) {
@@ -58,7 +56,6 @@ const Table: React.FC = () => {
   }
 
   function nextPage() {
-    console.log("nextPage", state);
     let { pageCount } = postsInfo;
     let { page } = state;
     if (page < pageCount) {
@@ -70,7 +67,6 @@ const Table: React.FC = () => {
   }
 
   function previousPage() {
-    console.log("previousPage", state);
     let { page } = state;
     if (page > 1) {
       getPostsFromApi(page).then((response) => {
@@ -81,7 +77,6 @@ const Table: React.FC = () => {
   }
 
   function gotoPage() {
-    console.log("gotoPage", appStateContext);
     let { page } = state;
     getPostsFromApi(page).then((response) => {
       setPostsInfo(response._meta);
