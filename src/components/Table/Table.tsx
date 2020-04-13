@@ -1,6 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  useReducer,
+} from "react";
 import Pagination from "../Pagination/Pagination";
 import GetPostsApi from "../../data/api/GetPostsApi";
+import appReducer, { appState } from "../Context/reducer";
 
 interface ITableProps {
   id: number;
@@ -21,6 +26,10 @@ const Table: React.FC = () => {
     perPage: 0,
     pageCount: 0,
   });
+
+  const appStateContext = React.createContext(appState);
+
+  const [state, dispatch] = useReducer(appReducer, appState);
 
   async function getPostsFromApi(page = 1) {
     return new GetPostsApi(
@@ -49,11 +58,11 @@ const Table: React.FC = () => {
   }
 
   function nextPage() {
-    let { pageCount, currentPage } = postsInfo;
-    if (currentPage < pageCount) {
-      console.log("nextPage", currentPage++);
-      getPostsFromApi(currentPage++).then((response) => {
-        console.log("response", response);
+    console.log("nextPage", state);
+    let { pageCount } = postsInfo;
+    let { page } = state;
+    if (page < pageCount) {
+      getPostsFromApi(page).then((response) => {
         setPostsInfo(response._meta);
         setData(response.result);
       });
@@ -61,15 +70,23 @@ const Table: React.FC = () => {
   }
 
   function previousPage() {
-    let { currentPage } = postsInfo;
-    if (currentPage > 1) {
-      console.log("previousPage", currentPage--);
-      getPostsFromApi(currentPage--).then((response) => {
-        console.log("response", response);
+    console.log("previousPage", state);
+    let { page } = state;
+    if (page > 1) {
+      getPostsFromApi(page).then((response) => {
         setPostsInfo(response._meta);
         setData(response.result);
       });
     }
+  }
+
+  function gotoPage() {
+    console.log("gotoPage", appStateContext);
+    let { page } = state;
+    getPostsFromApi(page).then((response) => {
+      setPostsInfo(response._meta);
+      setData(response.result);
+    });
   }
 
   useEffect(() => {
@@ -99,6 +116,8 @@ const Table: React.FC = () => {
         pageCount={postsInfo.pageCount}
         nextPageEvent={() => nextPage()}
         previousPageEvent={() => previousPage()}
+        gotoPageEvent={() => gotoPage()}
+        dispatch={dispatch}
       />
     </React.Fragment>
   );
